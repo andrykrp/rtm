@@ -13,7 +13,7 @@ public class Category {
     private Long id;
     private String name;
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "parent_id")
     private Category parentCategory;
     @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
     private List<Category> subCategories;

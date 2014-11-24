@@ -12,7 +12,7 @@ INSERT INTO Producer VALUES(nextVal('SEQ_PRODUCER'), 'test');
 CREATE TABLE Category (
   id bigint NOT NULL,
   name VARCHAR (200) NOT NULL,
-  category_id bigint,
+  parent_id bigint,
   PRIMARY KEY (id)
 );
 CREATE SEQUENCE SEQ_CATEGORY;
@@ -33,19 +33,24 @@ INSERT INTO Region VALUES(nextVal('SEQ_REGION'), 'test_region1', NULL);
 INSERT INTO Region VALUES(nextVal('SEQ_REGION'), 'test_region2', 1);
 
 -- OFFER
+-- startDate & endDate могут быть нулами?
 CREATE TABLE Offer (
   id bigint NOT NULL,
   name VARCHAR (500) NOT NULL,
+  description VARCHAR(1000),
   price FLOAT ,
   address VARCHAR (500),
+  creationDate TIMESTAMP NOT NULL,
+  startDate TIMESTAMP,
+  endDate TIMESTAMP,
   producer_id bigint NOT NULL,
   category_id bigint NOT NULL,
   PRIMARY KEY (id)
 );
 CREATE SEQUENCE SEQ_OFFER;
 
-INSERT INTO Offer VALUES (nextVal('SEQ_OFFER'), 'test_offer1', 123.32, 'test_address1', 1, 2);
-INSERT INTO Offer VALUES (nextVal('SEQ_OFFER'), 'test_offer2', 234.43, 'test_address2', 1, 2);
+INSERT INTO Offer VALUES (nextVal('SEQ_OFFER'), 'test_offer1', 'test_offer_descritpion1', 123.32, 'test_address1', NOW(), null, null, 1, 2);
+INSERT INTO Offer VALUES (nextVal('SEQ_OFFER'), 'test_offer2', null, 234.43, 'test_address2', NOW(), null, null, 1, 2);
 
 -- CONSUMER
 CREATE TABLE Consumer (
@@ -72,6 +77,15 @@ CREATE TABLE Consumer_Category (
 );
 
 INSERT INTO Consumer_Category VALUES(1,1);
+
+CREATE TABLE Consumer_Offer (
+  consumer_id bigint NOT NULL,
+  offer_id bigint NOT NULL,
+  creationDate TIMESTAMP NOT NULL,
+  status VARCHAR (20)
+);
+
+INSERT INTO Consumer_Offer VALUES(1,1,NOW(),'NEW');
 
 -- WISH
 CREATE TABLE Wish (

@@ -1,8 +1,6 @@
 package models;
 
 import javax.persistence.*;
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,7 +31,7 @@ public class Consumer {
             @JoinColumn(name = "CATEGORY_ID", nullable = false, updatable = false) },
             inverseJoinColumns = { @JoinColumn(name = "CONSUMER_ID",
                     nullable = false, updatable = false) })
-    private Set<Category> interests;
+    private Set<Category> categories;
 
     public Long getId() {
         return id;
@@ -75,11 +73,11 @@ public class Consumer {
         this.wishes = wishes;
     }
 
-    public Set<Category> getInterests() {
-        return interests;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public void setInterests(Set<Category> interests) {
-        this.interests = interests;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }

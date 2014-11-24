@@ -18,13 +18,11 @@ package controllers;
 
 import com.google.inject.Inject;
 import dao.*;
-import models.Category;
-import models.Consumer;
-import models.Offer;
 import ninja.Result;
 import ninja.Results;
 
 import com.google.inject.Singleton;
+import services.CategoryService;
 
 
 @Singleton
@@ -34,15 +32,30 @@ public class ApplicationController {
     private ConsumerDao consumerDao;
     @Inject
     private OfferDao offerDao;
+    @Inject
+    private AdviceDao adviceDao;
+    @Inject
+    private CategoryService categoryService;
 
     public Result index() {
-        Consumer consumer = consumerDao.getById(1L);
-        Offer offer = offerDao.getById(2L);
+//        Consumer consumer = consumerDao.getById(1L);
+//        Offer offer = offerDao.getById(2L);
+//
+//        consumerDao.addBookmark(consumer, offer);
 
-        consumerDao.addBookmark(consumer, offer);
+//        Advice advice = new Advice();
+//        advice.setConsumer(consumer);
+//        advice.setOffer(offer);
+//        advice.setCreationDate(new Date());
+//        advice.setStatus(OfferStatus.ACCEPTED);
+//
+//        adviceDao.save(advice);
+//
+//        List<Advice> advices = adviceDao.getAll();
 
-        return Results.html();
-
+        return Results.html()
+                .render("producerId", 1)
+                .render("categories", categoryService.getAllRootCategories());
     }
     
     public Result helloWorldJson() {

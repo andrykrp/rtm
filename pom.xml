@@ -169,5 +169,10 @@
             <version>${ninja.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.4.3</version>
+        </dependency>
     </dependencies>
 </project>

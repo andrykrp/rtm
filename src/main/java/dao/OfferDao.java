@@ -22,8 +22,9 @@ public class OfferDao extends AbstractDao {
     }
 
     @Transactional
-    public void save(Offer offer) {
+    public boolean save(Offer offer) {
         getEntityManager().persist(offer);
+        return offer.getId() != null;
     }
 
     @Transactional

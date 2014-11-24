@@ -1,9 +1,119 @@
 <#import "../layout/defaultLayout.ftl.html" as layout> 
-<@layout.myLayout "Home page">    
+<@layout.myLayout "Home page">
 
+    <script type="text/javascript">
+        $(function () {
+//            <#if offer?? && offer?has_content >
+//            $('#updateDomain').show();
+//            $('#saveDomain').hide();
+//            <#else>
+//            $('#updateDomain').hide();
+//            $('#saveDomain').show();
+//            </#if>
+            $('#saveOffer').click(function () {
+//                OfferController.setContainer('domainForm');
+                OfferController.save(${producerId});
+            });
+//            $('#updateDomain').click(function () {
+//                DomainController.setContainer('domainForm');
+//                DomainController.update($('#id').val());
+//            });
+        })
+    </script>
 
-<h1>${i18n("hello.world")}</h1>
-<p>${i18n("hello.world.json")}</p>
-<a href="/hello_world.json">Hello World Json</a>
+<h1>${i18n("offer.add")}</h1>
+<!--<p>${i18n("hello.world.json")}</p>-->
+
+    <form id="domainForm" role="form">
+        <input type="hidden" id="id" name="id" value="${(offer.id)!''}"/>
+
+        <div class="control-group">
+            <label for="name">${i18n('offer.name')}</label>
+
+            <div class="controls row">
+                <div class="col-xs-5">
+                    <input type="text" class="form-control" id="name" name="name" value="${(offer.name)!''}"/>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="control-group">
+            <label for="description">${i18n('offer.description')}</label>
+            <div class="controls row">
+                <div class="col-xs-5">
+                    <input type="text" class="form-control" id="description" name="description" value="${(offer.description)!''}"/>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="control-group">
+            <label for="price">${i18n('offer.price')}</label>
+            <div class="controls row">
+                <div class="col-xs-5">
+                    <input type="text" class="form-control" id="price" name="price" value="${(offer.price)!''}"/>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="control-group">
+            <label for="address">${i18n('offer.address')}</label>
+            <div class="controls row">
+                <div class="col-xs-5">
+                    <input type="text" class="form-control" id="address" name="address" value="${(offer.address)!''}"/>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="control-group">
+            <label for="startDate">${i18n('offer.startDate')}</label>
+            <div class="controls row">
+                <div class="col-xs-5">
+                    <input type="text" class="form-control" id="startDate" name="startDate" value="${(offer.startDate)!''}"/>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="control-group">
+            <label for="endDate">${i18n('offer.endDate')}</label>
+            <div class="controls row">
+                <div class="col-xs-5">
+                    <input type="text" class="form-control" id="endDate" name="endDate" value="${(offer.endDate)!''}"/>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="control-group">
+            <label for="category"> ${i18n('offer.category')}</label>
+
+            <div class="controls row">
+                <div class="col-xs-5">
+                    <select class="form-control" id="category" name="category">
+                        <option value="0"></option>
+                        <#list categories as category>
+                            <option value="${category.id}">
+                                ${category.name}
+                            </option>
+                        </#list>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="control-group">
+            <div class="controls row">
+                <div class="col-xs-5">
+                    <!--<button type="button" id="updateDomain" onclick="" class="btn btn-default">${i18n('app.button.update')}</button>-->
+                    <button type="button" id="saveOffer" class="btn btn-default">${i18n('app.button.save')}</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
 </@layout.myLayout>
